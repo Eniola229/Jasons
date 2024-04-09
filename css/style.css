@@ -64,17 +64,17 @@ body {
   font-size: 50px;
   font-weight: 900;
   margin: 50px 40px 40px;
-  color: green;
+  color: rgba(0, 19, 186, 1);
 }
 .eula {
-  color: darkgreen;
+  color: rgba(0, 6, 59, 1);
   font-size: 17px;
   font-weight: bold;
   line-height: 1.5;
   margin: 40px;
 }
 .right {
-  background: #005804;
+  background:rgba(0, 1, 106, 1);
   border-radius: 0 5px 5px 0;
   color: #F1F1F2;
   position: relative;
@@ -94,7 +94,7 @@ svg {
 }
 path {
   fill: none;
-  stroke: url(#linearGradient);;
+/*  stroke: url(#linearGradient);;*/
   stroke-width:3;
   stroke-dasharray: 240 1386;
 }
@@ -110,6 +110,9 @@ label {
   margin-top: 20px;
   margin-bottom: 5px;
 }
+.inp{
+  border-bottom:1px solid white;
+}
 input {
   background: transparent;
   border: 0;
@@ -119,6 +122,7 @@ input {
   line-height: 30px;
   outline: none !important;
   width: 100%;
+
 }
 input::-moz-focus-inner { 
   border: 0; 

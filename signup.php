@@ -13,13 +13,49 @@
             <div class="card card-4">
                 <label class="label-sec">Already Have an Account? <a href="index.php">Login Here</a></label>
                 <div class="card-body">
+                	<p style="color: red; text-align: center;">
+			  <?php
+				if (isset($_GET['status'])) {
+				    $errorCode = htmlspecialchars($_GET['status']); // Sanitize input
+				    switch ($errorCode) {
+				        case 'stmtfailed':
+				            echo '<p style="color: red; text-align: center;">An unexpected error occurred!</p>';
+				            break;
+				        case 'emptyInput':
+				            echo '<p style="color: red; text-align: center;">All fields with * are required!</p>';
+				            break;
+				        case 'invalidEmail':
+				            echo '<p style="color: red; text-align: center;">Invalid Email</p>';
+				            break; 
+				        case 'passwordmatch':
+				            echo '<p style="color: red; text-align: center;">Make sure Password And Confirm Password are the same</p>';
+				            break; 
+				        case 'useroremailtaken':
+				            echo '<p style="color: red; text-align: center;">Email Taken</p>';
+				            break; 
+				        default:
+				            // Log unrecognized error codes for debugging
+				            error_log("Unrecognized error code: $errorCode");
+				            echo '<p style="color: red; text-align: center;">An unexpected error occurred! Please try again later.</p>';
+				            break;
+				    }
+				} else {
+				    echo '<p style="color: red; text-align: center;">Kindly fill in your details correctly!</p>';
+				}
+				?>
 
-                    <h2 class="title">Membership Registration Form 
-                     
-                        
-                    </h2>
+		</p>
+                    <h2 class="title">Membership Registration Form </h2>
 
                     <form method="POST" action="includes/register.inc.php" enctype="multipart/form-data">
+                    	<div class="input-group">
+    
+                                <div class="input-group">
+                                    <label class="label">Profile ID</label>
+                                     <input class="trans-input" type="file" id="myFile" name="avatar_add">
+                                </div>
+                            </div>
+
                         <div class="row row-space">
                         </div>
                         <label class="label">Name<i></i></label>
@@ -42,14 +78,10 @@
                                 <div class="input-group">
                                     <label class="label">Gender <i>*</i></label>
                                     <div class="p-t-10">
-                                        <label class="radio-container m-r-45">Male
-                                            <input type="radio" checked="checked" name="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">Female
-                                            <input type="radio" name="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                       <select name="gender">
+                                       		<option>Male</option>
+                                       		<option>Female</option>
+                                       </select>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +90,7 @@
                                 <div class="input-group">
                             <label class="label combo">Marital Status <i>*</i></label>
                             <div class="rs-select2  js-select-simple select--no-search">
-                                <select name="marital_status ">
+                                <select name="marital_status">
                                     <option disabled="disabled" selected="selected">Choose Option</option>
                                     <option>Single</option>
                                     <option>Married</option>
@@ -91,7 +123,7 @@
                                 <div class="input-group">
                                     <label class="label">Birth Date <i>*</i></label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <input class="input--style-4 js-datepicker" type="date" name="birthday">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -109,7 +141,7 @@
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label2">Address Line 2 <i>*</i></label>
+                                    <label class="label2">Address Line 2</label>
                                     <input class="input--style-4" type="text" name="street_address_2">
                                 </div>
                             </div>
@@ -403,8 +435,8 @@
                            <div class="col-3">
                                 <div class="input-group-4">
              
-                                    <label class="label" name="highest_level_of_edu">Highest Level of Education <i>*</i></label>
-                                   <select>
+                                    <label class="label">Highest Level of Education <i>*</i></label>
+                                   <select  name="highest_level_of_edu">
                                    		<option>Tertiary</option>
                                    		<option>Secondary</option>
                                    		<option>Primary</option>
@@ -436,43 +468,33 @@
                                 </div>                             
                         </div>
 
-                           <div class="col-3">
-                                <div class="input-group-4">
-             
-                                    <label class="label">Highest Level of Education <i>*</i></label>
-                                   <select name="highest_level_of_edu">
-                                   		<option>Tertiary</option>
-                                   		<option>Secondary</option>
-                                   		<option>Primary</option>
-                                   </select>
-                                </div>                            
-                        </div>
+                          
 <hr>
-                             <label class="label" style="font-weight: bold;">Second  Degree<i>*</i></label>
+                             <label class="label" style="font-weight: bold;">Second  Degree (Optional)</label>
                            <div class="col-2">
                                  <div class="input-group">
                                     <label class="label">Name of Institution <i>*</i></label>
                                     <input class="input--style-4" type="text" name="sec_name_of_institution">
                                 </div>   
                                 <div class="input-group">
-                                    <label class="label">Other Institution (If not available in the list above) <i>*</i></label>
+                                    <label class="label">Other Institution (If not available in the list above) </label>
                                     <input class="input--style-4" type="text" name="sec_other_institute">
                                 </div>   
                                 <div class="input-group">
-                                    <label class="label">Department <i>*</i></label>
+                                    <label class="label">Department </label>
                                     <input class="input--style-4" type="text" name="sec_department">
                                 </div>   
                                 <div class="input-group">
-                                    <label class="label">Qualification Obtained <i>*</i></label>
+                                    <label class="label">Qualification Obtained</label>
                                     <input class="input--style-4" type="text" name="sec_qualification_obtained">
                                 </div>
-                                 <div class="input-group">
-                                    <label class="label">Attach Qualification<i>*</i></label>
+                                 <!-- <div class="input-group">
+                                    <label class="label">Attach Qualification</label>
                                     <input class="input--style-4" type="file" name="sec_attach_qualification_add">
-                                </div>                             
+                                </div> -->                             
                         </div>
 <hr>
-                         <label class="label" style="font-weight: bold;">Other Qualification e.g. Certification<i>*</i></label>
+                         <label class="label" style="font-weight: bold;">Other Qualification e.g. Certification</label>
                            <div class="col-2">
                                  <div class="input-group">
                                     <label class="label">Other Qualification 1</label>
@@ -500,7 +522,7 @@
                                     <input class="input--style-4" type="text" name="med_non_med">
                                 </div>     
                                  <div class="input-group">
-                                    <label class="label">Employer</label>Y
+                                    <label class="label">Employer</label>
                                     <input class="input--style-4" type="text" name="employer">
                                 </div>       
                                 <div class="input-group">
@@ -515,19 +537,19 @@
                                     <label class="label">Area of Service <i>*</i></label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Jasons Health Corps
-                                            <input type="radio" checked="checked" name="ser_of_area">
+                                            <input type="radio" checked="checked" value="Jasons Health Corps" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Child Destiny Fund
-                                            <input type="radio" name="ser_of_area">
+                                            <input type="radio" value="Child Destiny Fund" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                          <label class="radio-container m-r-45">Jasons Gifted Award
-                                            <input type="radio" checked="checked" name="ser_of_area">
+                                            <input type="radio" value="Jasons Gifted Award" checked="checked" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Music
-                                            <input type="radio" name="ser_of_area">
+                                            <input type="radio" value="Music" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>                                      
                                     </div>
@@ -536,19 +558,19 @@
                                    
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">JChaste Ideal
-                                            <input type="radio" checked="checked" name="ser_of_area">
+                                            <input type="radio" value="JChaste Ideal" checked="checked" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Jasons Hospitals
-                                            <input type="radio" name="ser_of_area">
+                                            <input type="radio" value="Jasons Hospitals" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                          <label class="radio-container m-r-45">Patient Help Fund
-                                            <input type="radio" checked="checked" name="ser_of_area">
+                                            <input type="radio" value="Patient Help Fund" checked="checked" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Editorial
-                                            <input type="radio" name="ser_of_area">
+                                            <input type="radio" value="Editorial" name="ser_of_area">
                                             <span class="checkmark"></span>
                                         </label>                                      
                                     </div>
@@ -563,19 +585,19 @@
                                     <label class="label">Mode of Commitment <i>*</i></label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Field Mission
-                                            <input type="radio" checked="checked" name="mode_of_com">
+                                            <input type="radio" value="Field Mission" checked="checked" name="mode_of_com">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Consultancy
-                                            <input type="radio" name="mode_of_com">
+                                            <input type="radio" value="Consultancy" name="mode_of_com">
                                             <span class="checkmark"></span>
                                         </label>
                                          <label class="radio-container m-r-45">Prayer / Counseling
-                                            <input type="radio" checked="checked" name="mode_of_com">
+                                            <input type="radio" value="Prayer/Counseling" checked="checked" name="mode_of_com">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="radio-container">inancial / Materials
-                                            <input type="radio" name="mode_of_com">
+                                        <label class="radio-container">Financial / Materials
+                                            <input type="radio" value="Financial/Materials" name="mode_of_com">
                                             <span class="checkmark"></span>
                                         </label>                                      
                                     </div>
@@ -589,7 +611,7 @@
  					<div class="row row-space">
                          <div class="input-area">
                                 <div class="input-group">
-                                    <label class="label">Motivation <i>*</i></label>
+                                    <label class="label">Motivation </label>
                                     <textarea id="message" name="message" rows="4" cols="40"></textarea>                              
                             </div>
                         </div>
@@ -603,20 +625,8 @@
                                     <input class="input--style-4" type="password" name="pass_word">
                                 </div>
                             </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Confirm Password <i>*</i>cd de</label>
-                                    <input class="input--style-4" type="password" name="pwdRepeat">
-                                </div>
-                            </div>
                         </div>
-                        <div class="input-group">
-    
-                                <div class="input-group">
-                                    <label class="label">Avatar <i>*</i></label>
-                                     <input class="trans-input" type="file" id="myFile" name="avatar">
-                                </div>
-                            </div>
+                        
 
                         <div class="p-t-15">
                             <button class="btn-btn " type="submit" name="submit">Submit</button>
