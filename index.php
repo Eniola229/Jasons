@@ -25,6 +25,12 @@
                 case 'emailsent':
                     echo '<p style="color:green; text-align:center">Kindly Check your Email and Login</p>';
                     break; 
+                case 'errorlogginyouin':
+                    echo '<p style="color:red; text-align:center">Error Loggin you in</p>'; 
+                    break;
+                case 'logoutsuccess':
+                    echo '<p style="color:red; text-align:center">Logout Successful</p>'; 
+                    break;
                 default:
                     // Log unrecognized error codes for debugging
                     error_log("Unrecognized error code: $errorCode");

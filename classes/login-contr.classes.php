@@ -23,24 +23,42 @@ class LoginContr extends Login
             exit;
         }
 
-        if (!$this->sendEmail($this->email, $userData['unix_id'])) {
+        if (!$this->sendEmailCheckLater($this->email, $userData['unix_id'])) {
+            error_log("Failed to send login email notification.");
+        }
+         if (!$this->AdminLogin($this->email, $userData['unix_id'])) {
+            error_log("Failed to send login email notification.");
+        }
+         if (!$this->CoordinatorLogin($this->email, $userData['unix_id'])) {
             error_log("Failed to send login email notification.");
         }
 
         $this->setLoginCookie($userData['user_id'], $this->email);
 
-        if ($_SESSION['payment_plan'] == "null") {
-            header("Location: ../subscribtion.php");
-            exit;
-        } elseif ($_SESSION['payment_plan'] == "1") {
-            $this->freePlan($this->email, $userData['unix_id']);
-            header('Location: ../home.php');
-            exit;
-        } else {
-            header('Location: ../subscription.php');
-            exit;
-        }
+        if ($_SESSION['role'] == "") {
+            if ($_SESSION['approved'] == "1") {
+                header("Location: ../memberhome.php");
+                 $this->sendEmailWelHome($this->email, $userData['unix_id']);
+                exit;  
+            } else {
+                header("Location: ../checkbacklater.php");
+                $this->sendEmailCheckLater($this->email, $userData['unix_id']);
+                exit;  
+            }
+            } elseif ($_SESSION['role'] == "2.0") {
+                $this->AdminLogin($this->email, $userData['unix_id']);
+                header('Location: ../admin.php');
+                exit;
+            } elseif ($_SESSION['role'] == "1.0") {
+                $this->CoordinatorLogin($this->email, $userData['unix_id']);
+                header('Location: ../coordinator.php');
+                exit;
+            } else {
+                header('Location: ../index.php?status=errorlogginyouin');
+                exit;
+            }
     }
+
 
     public function setLoginCookie($user_id, $email)
     {

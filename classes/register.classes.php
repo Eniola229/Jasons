@@ -27,7 +27,7 @@ class Register extends Dbh
 
             //Content
             $mail->isHTML(true); // Set email format to HTML
-            $mail->Subject = 'Jasons Membership Registration ';
+            $mail->Subject = 'Jasons Membership Registration';
             $email_template  = "<strong>Welcome ". $first_name ."!</strong><br/><p>Your Unique ID: " . $unix_id . "</p>"
                              . "<p>Kindly verify your email by clicking the link below:</p>"
                              . "<a href='http://localhost/jason'>Click here to Login</a>"
@@ -86,12 +86,12 @@ class Register extends Dbh
         }
 
         // Prepare the SQL statement
-        $stmt = $this->connect()->prepare('INSERT INTO users (first_name, last_name, gender, marital_status, email, phone, birthday, street_address, street_address_2, city, zip, region, country, highest_level_of_edu, name_of_institution, department, qualification_obtained, other_institute, sec_name_of_institution, sec_other_institute, sec_department, sec_qualification_obtained, sec_attach_qualification_add, qua_1_add, qua_2_add, qua_3_add, job_pro, med_non_med, employer, job_region, ser_of_area, mode_of_com, message, avatar_add, payment_plan, verification_status, pass_word) 
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO users (first_name, last_name, gender, marital_status, email, phone, unix_id, birthday, street_address, street_address_2, city, zip, region, country, highest_level_of_edu, name_of_institution, department, qualification_obtained, other_institute, sec_name_of_institution, sec_other_institute, sec_department, sec_qualification_obtained, sec_attach_qualification_add, qua_1_add, qua_2_add, qua_3_add, job_pro, med_non_med, employer, job_region, ser_of_area, mode_of_com, message, avatar_add, payment_plan, verification_status, pass_word) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);');
 
 
-        // Bind the parameters and execute the statement
-       if (!$stmt->execute(array($first_name, $last_name, $gender, $marital_status, $email, $phone, $birthday, $street_address, $street_address_2, $city, $zip, $region, $country, $highest_level_of_edu, $name_of_institution, $department, $qualification_obtained, $other_institute, $sec_name_of_institution, $sec_other_institute, $sec_department, $sec_qualification_obtained, $sec_attach_qualification_add, $qua_1_add, $qua_2_add, $qua_3_add, $job_pro, $med_non_med, $employer, $job_region, $ser_of_area, $mode_of_com, $message, $uniqueFileName, $payment_plan, $verification_status, $hashedPwd)))
+        // Bind the parameters and execute the statement 
+       if (!$stmt->execute(array($first_name, $last_name, $gender, $marital_status, $email, $phone, $unix_id, $birthday, $street_address, $street_address_2, $city, $zip, $region, $country, $highest_level_of_edu, $name_of_institution, $department, $qualification_obtained, $other_institute, $sec_name_of_institution, $sec_other_institute, $sec_department, $sec_qualification_obtained, $sec_attach_qualification_add, $qua_1_add, $qua_2_add, $qua_3_add, $job_pro, $med_non_med, $employer, $job_region, $ser_of_area, $mode_of_com, $message, $uniqueFileName, $payment_plan, $verification_status, $hashedPwd)))
 
         {
             $stmt = null;
