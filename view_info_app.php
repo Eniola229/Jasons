@@ -65,6 +65,14 @@ $user = $viewUser->getUserById($user_id);
                 <span class="interests_item"><?php echo $user['name_of_institution']; ?></span>
                 <span class="interests_item"><?php echo $user['sec_qualification_obtained']; ?></span>
                 <span class="interests_item"><?php echo $user['med_non_med']; ?></span>
+                <span class="interests_item"><?php echo $user['unix_id']; ?></span>
+                <p>Phone Number: <?php echo $user['phone']; ?></p>
+                <p>Marital Status: <?php echo $user['marital_status']; ?></p>
+                <p>Gender: <?php echo $user['gender']; ?></p>
+                <p>Date Of Birth: <?php echo $user['birthday']; ?></p>
+                <p>Medical Or Non Medical: <?php echo $user['med_non_med']; ?></p>
+                <p>Address: <?php echo $user['street_address']; ?></p>
+               
             </div>
         </div>
     </section>
@@ -72,24 +80,89 @@ $user = $viewUser->getUserById($user_id);
     <div class="info">
         <ul>
             <li>
-                <div class="link_img_wrapper">
-                    <img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt="">
-                </div>
-                <p>Seoul, South Korea</p>
+                <!-- <div class="link_img_wrapper">
+                </div> -->
+                <p>Highest Level Of Education: <?php echo $user['highest_level_of_edu']; ?></p>
             </li>
             <li>
-                <div class="link_img_wrapper">
-                    <img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/speaking-head_1f5e3-fe0f.png" alt="">
-                </div>
-                <p>Korean, English</p>
+                <p>Name Of Institution: <?php echo $user['name_of_institution']; ?></p>
             </li>
             <li>
-                <div class="link_img_wrapper">
-                    <img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/globe-with-meridians_1f310.png" alt="">
-                </div>
-                <p>sandbox.kr/samsantech</p>
+                <p>Other Institute:  <?php echo $user['other_institute']; ?></p>
+            </li>
+
+        </ul>
+         <ul>
+            <li>
+                <!-- <div class="link_img_wrapper">
+                </div> -->
+                <p>Department: <?php echo $user['department']; ?></p>
+            </li>
+            <li>
+                <p>Qualification Obtained: <?php echo $user['qualification_obtained']; ?></p>
+            </li>
+            <li>
+                <p>Secound Institute:  <?php echo $user['sec_other_institute']; ?></p>
+            </li>
+            <li>
+                <p>Approved:  <?php echo $user['approved']; ?></p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <!-- <div class="link_img_wrapper">
+                </div> -->
+                <p>Employer: <?php echo $user['employer']; ?></p>
+            </li>
+            <li>
+                <p>Payment Plan: <?php echo $user['payment_plan']; ?></p>
+            </li>
+            <li>
+                <p>Verification Status:  <?php echo $user['verification_status']; ?></p>
+            </li>
+             <li>
+                <p>Created At:  <?php echo $user['created_at']; ?></p>
             </li>
         </ul>
     </div>
+
+    <h3 style="text-align: center; color: red; font-weight: bold;">Uploaded Documents</h3>
+    <div class="documents">
+     
+     <div class="profile_img_section">
+            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qualification_obtained']; ?>" />
+            <div class="">
+               <p>Qualification </p>
+            </div>
+        </div>
+    </div>
+    <div class="profile_img_section">
+            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['sec_attach_qualification_add']; ?>" />
+            <div class="">
+               <p>Secound Qualification </p>
+            </div>
+        </div>
+
+         <div class="profile_img_section">
+            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_1_add']; ?>" />
+            <div class="">
+               <p>Other Qualification 1 </p>
+            </div>
+        </div>
+         <div class="profile_img_section">
+            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_2_add']; ?>" />
+            <div class="">
+               <p>Other Qualification 2 </p>
+            </div>
+        </div>
+         <div class="profile_img_section">
+            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_3_add']; ?>" />
+            <div class="">
+               <p>Other Qualification 3 </p>
+            </div>
+        </div>
+
+    </div>
+    
 </body>
 </html>

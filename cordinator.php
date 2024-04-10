@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include "classes/view_users_app.php";
   include "classes/view_users.php";
 ?>
 <!DOCTYPE html>
@@ -53,6 +54,12 @@
         <a class="nav-list-link" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           Message Co-Ordinator
+        </a>
+      </li>
+      <li class="nav-list-item" style="color:red;">
+        <a class="nav-list-link" style="color: red;" href="includes/logout.inc.php">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="32" stroke-dashoffset="32" d="M12 4H5C4.44772 4 4 4.44772 4 5V19C4 19.5523 4.44772 20 5 20H12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="32;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M9 12h11.5" opacity="0"><set attributeName="opacity" begin="0.5s" to="1"/><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M20.5 12l-3.5 -3.5M20.5 12l-3.5 3.5" opacity="0"><set attributeName="opacity" begin="0.7s" to="1"/><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="6;0"/></path></g></svg>
+          Logout
         </a>
       </li>
     </ul>
@@ -135,7 +142,34 @@
             <h2>New Applications</h2>
           </div>
           <div class="chart-data-details"> -->
+            <!------for alert---->
+               <?php
+        if (isset($_GET['status'])) {
+            $errorCode = htmlspecialchars($_GET['status']); // Sanitize input
+            switch ($errorCode) {
+                case 'stmtfailed':
+                    echo '<p style="color: red; text-align: center;">An unexpected error occurred!</p>';
+                    break;
+                case 'approved':
+                    echo '<p style="color: green; text-align: center;">Successful! Member has been Approved</p>';
+                    break;
+                case 'errora':
+                    echo '<p style="color: red; text-align: center;">Error! Could no approved user</p>';
+                    break;
+                default:
+                    // Log unrecognized error codes for debugging
+                    error_log("Unrecognized error code: $errorCode");
+                    echo '<p style="color: red; text-align: center;">An unexpected error occurred! Please try again later.</p>';
+                    break;
+            }
+        } else {
+            echo '<p style="color: green; text-align: center;">Welcome Home!</p>';
+        }
+        ?>
             <!--------This is the table for users------------>
+          <div class="chart-container-header">
+            <h2>New Applications</h2>
+          </div>
          <table>
             <tr>
                 <th style="color:white;">ID</th>
@@ -149,8 +183,36 @@
                     <td style="color:white;"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></td>
                     <td style="color:white;"><?php echo $user['email']; ?></td>
                     <td>
-                        <button class="button">Approve</button>
+
+                        <a href="includes/appreove.inc.php?email=<?php echo $user['email']; ?>"><button class="button">Approve</button></a>
                         <a href="view_info_app.php?id=<?php echo $user['user_id']; ?>"><button class="button">View</button></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+
+         <div class="chart-container-header">
+            <h2>ALl Members</h2>
+          </div>
+         <table>
+            <tr>
+                <th style="color:white;">ID</th>
+                <th style="color:white;">Name</th>
+                <th style="color:white;">Email</th>
+                <th style="color:white;">Actions</th>
+            </tr>
+            <?php foreach ($users_all as $user_all): ?>
+                <tr>
+                    <td style="color:white;"><?php echo $user_all['user_id']; ?></td>
+                    <td style="color:white;"><?php echo $user_all['first_name']; ?> <?php echo $user_all['last_name']; ?></td>
+                    <td style="color:white;"><?php echo $user_all['email']; ?></td>
+                    <td>
+
+                         <form action='includes/delete_user.inc.php' method='post'>
+                            <input type='hidden' name='email' value='<?php echo $user['email']; ?>'>
+                            <button class="btn_delete" type='submit'>Delete</button>
+                         </form>
+                        <a href="view_info_app.php?id=<?php echo $user_all['user_id']; ?>"><button class="button">View</button></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

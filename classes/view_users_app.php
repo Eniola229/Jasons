@@ -1,7 +1,7 @@
 <?php
-include_once "dbh.classes.php";
+include "dbh.classes.php";
 
-class Users_all extends Dbh
+class Users extends Dbh
 {
     private $pdo;
 
@@ -11,7 +11,7 @@ class Users_all extends Dbh
     }
 
     public function getUsers() {
-        $stmt = $this->pdo->prepare("SELECT * FROM users ORDER BY created_at DESC");
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE approved IS NULL ORDER BY created_at DESC");
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -20,9 +20,8 @@ class Users_all extends Dbh
 // Establish a database connection
 $pdo = new PDO("mysql:host=localhost;dbname=jasons", 'root', '');
 
-// Create an instance of the Users_all class
-$users_all_obj = new Users_all($pdo);
+// Create an instance of the user class
+$viewUser = new Users($pdo);
 
 // Retrieve users
-$users_all = $users_all_obj->getUsers();
-?>
+$users = $viewUser->getUsers();
