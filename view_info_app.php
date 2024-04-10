@@ -127,36 +127,36 @@ $user = $viewUser->getUserById($user_id);
     </div>
 
     <h3 style="text-align: center; color: red; font-weight: bold;">Uploaded Documents</h3>
-    <div class="documents">
+    <div class="images-container">
      
-     <div class="profile_img_section">
-            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qualification_obtained']; ?>" />
+     <div class="img_section">
+            <img class="img-LG-lg" src="http://localhost/json/avatar_uploads/<?php echo $user['qualification_obtained']; ?>" />
             <div class="">
                <p>Qualification </p>
             </div>
         </div>
     </div>
-    <div class="profile_img_section">
-            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['sec_attach_qualification_add']; ?>" />
+    <div class="img_section">
+            <img class="img-LG-lg" src="http://localhost/json/avatar_uploads/<?php echo $user['sec_attach_qualification_add']; ?>" />
             <div class="">
                <p>Secound Qualification </p>
             </div>
         </div>
 
-         <div class="profile_img_section">
-            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_1_add']; ?>" />
+         <div class="img_section">
+            <img class="img-LG-lg" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_1_add']; ?>" />
             <div class="">
                <p>Other Qualification 1 </p>
             </div>
         </div>
-         <div class="profile_img_section">
-            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_2_add']; ?>" />
+         <div class="img_section">
+            <img class="pimg-LG-lg" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_2_add']; ?>" />
             <div class="">
                <p>Other Qualification 2 </p>
             </div>
         </div>
-         <div class="profile_img_section">
-            <img class="profile_img-LG" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_3_add']; ?>" />
+         <div class="img_section">
+            <img class="img-LG-lg" src="http://localhost/json/avatar_uploads/<?php echo $user['qua_3_add']; ?>" />
             <div class="">
                <p>Other Qualification 3 </p>
             </div>

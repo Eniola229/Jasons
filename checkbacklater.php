@@ -13,7 +13,7 @@
         background: #EBF0F5;
       }
         h1 {
-          color: darkred;
+          color: black;
           font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
           font-weight: 900;
           font-size: 40px;
@@ -38,7 +38,7 @@
         box-shadow: 0 2px 3px #C8D0D8;
         display: inline-block;
         margin: 0 auto;
-        width: 70%;
+        width: 50%;
       }
     </style>
     <body>
