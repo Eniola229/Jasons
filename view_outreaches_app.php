@@ -31,7 +31,7 @@
       <span>Jasons</span>
     </div>
     <ul class="nav-list">
-      <li class="nav-list-item active">
+      <li class="nav-list-item ">
         <a class="nav-list-link" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns"><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"/></svg>
           Dashboard
@@ -49,7 +49,7 @@
           Add Outreaches
         </a>
       </li>
-      <li class="nav-list-item">
+      <li class="nav-list-item active">
         <a class="nav-list-link" href="view_outreaches_app.php">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" d="M5 3H12.5V8.5H19V21H5V3Z"><animate fill="freeze" attributeName="fill-opacity" begin="1.4s" dur="0.15s" values="0;0.3"/></path><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="2"><path stroke-dasharray="64" stroke-dashoffset="64" d="M13 3L19 9V21H5V3H13"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M9 13H13"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s" values="6;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M9 16H15"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" dur="0.2s" values="8;0"/></path></g><path stroke-dasharray="14" stroke-dashoffset="14" d="M12.5 3V8.5H19"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="14;0"/></path></g></svg>
           Outreaches Applications
@@ -186,34 +186,11 @@
                     break;
             }
         } else {
-            echo '<p style="color: green; text-align: center;">Welcome Home!</p>';
+            echo '<p style="color: green; text-align: center;">Welcome!!!</p>';
         }
         ?>
             <!--------This is the table for users------------>
-          <div class="chart-container-header">
-            <h2>New Member Applications</h2>
-          </div>
-         <table>
-            <tr>
-                <th style="color:white;">ID</th>
-                <th style="color:white;">Name</th>
-                <th style="color:white;">Email</th>
-                <th style="color:white;">Actions</th>
-            </tr>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td style="color:white;"><?php echo $user['user_id']; ?></td>
-                    <td style="color:white;"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></td>
-                    <td style="color:white;"><?php echo $user['email']; ?></td>
-                    <td>
-
-                        <a href="includes/appreove.inc.php?email=<?php echo $user['email']; ?>"><button class="button">Approve</button></a>
-                        <a href="view_info_app.php?id=<?php echo $user['user_id']; ?>"><button class="button">View</button></a>
-                        <a href="includes/delete_user.inc.php?email=<?php echo $user['email']; ?>"><button class="btn_delete">Delete</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
+          
 
         <div class="chart-container-header">
             <h2>New Outreach Applications</h2>
@@ -234,30 +211,6 @@
 
                          <a href="includes/decline.inc.php?email=<?php echo $outreach_all['email']; ?>"><button class="btn_delete">Decline</button>
                         <a href="view_out_app.php?email=<?php echo $outreach_all['email']; ?>"><button class="button">View</button></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
-         <div class="chart-container-header">
-            <h2>ALL Members</h2>
-          </div>
-         <table>
-            <tr>
-                <th style="color:white;">ID</th>
-                <th style="color:white;">Name</th>
-                <th style="color:white;">Email</th>
-                <th style="color:white;">Actions</th>
-            </tr>
-            <?php foreach ($users_all as $user_all): ?>
-                <tr>
-                    <td style="color:white;"><?php echo $user_all['user_id']; ?></td>
-                    <td style="color:white;"><?php echo $user_all['first_name']; ?> <?php echo $user_all['last_name']; ?></td>
-                    <td style="color:white;"><?php echo $user_all['email']; ?></td>
-                    <td>
-
-                         <a href="includes/delete_user.inc.php?email=<?php echo $user_all['email']; ?>"><button class="btn_delete">Delete</button>
-                        <a href="view_info_app.php?id=<?php echo $user_all['user_id']; ?>"><button class="button">View</button></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

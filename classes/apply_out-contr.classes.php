@@ -1,18 +1,18 @@
 <?php
-class PostContr extends Post {
-    public function handlePost($title, $about, $country, $date_time, $file, $location, $body) {
+class ApplyOutContr extends ApplyOut {
+    public function handlePost($name, $email, $country, $outreache_id, $title, $body, $occupation) {
         // Validation
-        if (empty($title) || empty($about) || empty($country) || empty($date_time) || empty($location) || empty($body) ) {
-            // Both body and file are empty
-            header("location: ../add_outreaches.php?status=allfieldrequired");
+        if (empty($name) || empty($email) || empty($country) || empty($outreache_id) || empty($body)) {
+            // All fields are required
+            header("location: ../apply_for_out.php?status=allfieldrequired");
             exit();
         }
 
-        // Process post content
-        $this->setPost($title, $about, $country, $date_time, $file, $location, $body);
+        // Process form data
+        $this->setPost($name, $email, $country, $outreache_id, $title, $body, $occupation);
 
         // Redirect to success page
-        header("location: ../add_outreaches.php?status=postsuccess");
+        header("location: ../apply_for_out_succ.php?status=appsuccess");
         exit();
     }
 }

@@ -76,13 +76,13 @@ $post = $viewPost->getUserById($post_id);
             <legend><span class="number">1</span><abbr title="Information">Your Basic Info</abbr></legend>
 <!-- Name Input -->
             <label for="name">Full Name:<i style="color:red;">*</i></label>
-            <input type="text" value="<?php echo $_SESSION['first_name'] ?> <?php echo $_SESSION['last_name'] ?>" id="name" name="name" disabled>
+            <input type="text" value="<?php echo $_SESSION['first_name'] ?> <?php echo $_SESSION['last_name'] ?>" id="name" name="name">
 <!-- E-mail Input -->
             <label for="about">E-mail:<i style="color:red;">*</i></label>
             <input type="text" id="mail" value="<?php echo $_SESSION['email']?>" name="email">
  <!-- Ocupation Input -->
             <label for="about">Occupation:<i style="color:red;">*</i></label>
-            <input type="text" id="mail" value="<?php echo $_SESSION['job_pro']?>" name="occupation" disabled>
+            <input type="text" id="mail" value="<?php echo $_SESSION['job_pro']?>" name="occupation">
 <!-- Age Dropdown -->
             <label for="age">Country:</label>
             
@@ -342,8 +342,8 @@ $post = $viewPost->getUserById($post_id);
         <fieldset>
             <legend>Outreach</legend>
             <label>Outrech Title:</label>
-            <input type="text" value="<?php echo $post['title']; ?>" name="outreach_title" disabled>
-             <input type="hidden" value="<?php echo $post['outreach_id']; ?>" name="outreach_title">
+            <input type="text" value="<?php echo $post['title']; ?>" name="title">
+             <input type="hidden" value="<?php echo $post['outreach_id']; ?>" name="outreache_id">
         </fieldset>
 
         <fieldset>

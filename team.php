@@ -4,7 +4,6 @@
   include "classes/view_users.php";
   include "classes/view_outreaches.classes.php";
   include "classes/view_outreaches_app.classes.php";
-  include "classes/view_outreaches_app_dec.classes.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,8 +30,8 @@
       <span>Jasons</span>
     </div>
     <ul class="nav-list">
-      <li class="nav-list-item active">
-        <a class="nav-list-link" href="#">
+      <li class="nav-list-item">
+        <a class="nav-list-link" href="cordinator.php">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns"><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"/></svg>
           Dashboard
         </a>
@@ -50,19 +49,13 @@
         </a>
       </li>
       <li class="nav-list-item">
-        <a class="nav-list-link" href="view_outreaches_app.php">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" d="M5 3H12.5V8.5H19V21H5V3Z"><animate fill="freeze" attributeName="fill-opacity" begin="1.4s" dur="0.15s" values="0;0.3"/></path><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="2"><path stroke-dasharray="64" stroke-dashoffset="64" d="M13 3L19 9V21H5V3H13"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M9 13H13"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s" values="6;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M9 16H15"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" dur="0.2s" values="8;0"/></path></g><path stroke-dasharray="14" stroke-dashoffset="14" d="M12.5 3V8.5H19"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="14;0"/></path></g></svg>
-          Outreaches Applications
-        </a>
-      </li>
-      <li class="nav-list-item">
         <a class="nav-list-link" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
           Profile
         </a>
       </li>
-      <li class="nav-list-item">
-        <a class="nav-list-link" href="team.php">
+      <li class="nav-list-item active">
+        <a class="nav-list-link" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Team
         </a>
@@ -176,9 +169,6 @@
                 case 'user_deleted':
                     echo '<p style="color: red; text-align: center;">Deleted Succesfully!!!</p>';
                     break;
-                     case 'declined':
-                    echo '<p style="color: green; text-align: center;">Declined Succesfully!!!</p>';
-                    break;
                 default:
                     // Log unrecognized error codes for debugging
                     error_log("Unrecognized error code: $errorCode");
@@ -186,58 +176,12 @@
                     break;
             }
         } else {
-            echo '<p style="color: green; text-align: center;">Welcome Home!</p>';
+            echo '<p style="color: green; text-align: center;">View All Members!</p>';
         }
         ?>
             <!--------This is the table for users------------>
-          <div class="chart-container-header">
-            <h2>New Member Applications</h2>
-          </div>
-         <table>
-            <tr>
-                <th style="color:white;">ID</th>
-                <th style="color:white;">Name</th>
-                <th style="color:white;">Email</th>
-                <th style="color:white;">Actions</th>
-            </tr>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td style="color:white;"><?php echo $user['user_id']; ?></td>
-                    <td style="color:white;"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></td>
-                    <td style="color:white;"><?php echo $user['email']; ?></td>
-                    <td>
-
-                        <a href="includes/appreove.inc.php?email=<?php echo $user['email']; ?>"><button class="button">Approve</button></a>
-                        <a href="view_info_app.php?id=<?php echo $user['user_id']; ?>"><button class="button">View</button></a>
-                        <a href="includes/delete_user.inc.php?email=<?php echo $user['email']; ?>"><button class="btn_delete">Delete</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
-        <div class="chart-container-header">
-            <h2>New Outreach Applications</h2>
-          </div>
-         <table>
-            <tr>
-                <th style="color:white;">Name</th>
-                <th style="color:white;">Email</th>
-                <th>Type</th>
-                <th style="color:white;">Actions</th>
-            </tr>
-            <?php foreach ($outreach_all as $outreach_all): ?>
-                <tr>
-                    <td style="color:white;"><?php echo $outreach_all['name']; ?></td>
-                    <td style="color:white;"><?php echo $outreach_all['email']; ?></td>
-                    <td style="color:white;"><?php echo $outreach_all['title']; ?></td>
-                    <td>
-
-                         <a href="includes/decline.inc.php?email=<?php echo $outreach_all['email']; ?>"><button class="btn_delete">Decline</button>
-                        <a href="view_out_app.php?email=<?php echo $outreach_all['email']; ?>"><button class="button">View</button></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
+        
+      
 
          <div class="chart-container-header">
             <h2>ALL Members</h2>
@@ -258,30 +202,6 @@
 
                          <a href="includes/delete_user.inc.php?email=<?php echo $user_all['email']; ?>"><button class="btn_delete">Delete</button>
                         <a href="view_info_app.php?id=<?php echo $user_all['user_id']; ?>"><button class="button">View</button></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
-         <div class="chart-container-header">
-            <h2>All Outreach Applications</h2>
-          </div>
-         <table>
-            <tr>
-                <th style="color:white;">Name</th>
-                <th style="color:white;">Email</th>
-                <th>Type</th>
-                <th style="color:white;">Actions</th>
-            </tr>
-            <?php foreach ($OutReach_all_app_dec_shows as $OutReach_all_app_dec_show): ?>
-                <tr>
-                    <td style="color:white;"><?php echo $OutReach_all_app_dec_show['name']; ?></td>
-                    <td style="color:white;"><?php echo $OutReach_all_app_dec_show['email']; ?></td>
-                    <td style="color:white;"><?php echo $OutReach_all_app_dec_show['title']; ?></td>
-                    <td>
-
-                         <a href="includes/decline.inc.php?email=<?php echo $OutReach_all_app_dec_show['email']; ?>"><button class="btn_delete">Decline</button>
-                        <a href="view_out_app.php?email=<?php echo $OutReach_all_app_dec_show['email']; ?>"><button class="button">View</button></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
