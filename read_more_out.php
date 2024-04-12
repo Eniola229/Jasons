@@ -43,13 +43,25 @@ $post = $viewPost->getUserById($post_id);
 <div class="slider-wrapper flex">
   <div class="slide flex">
     <div class="slide-image slider-link prev">
-      <img src="http://localhost/json/post_image_uploads/<?php echo $post['imgvid_part']; ?>" alt="view posts"><div class="overlay"></div></div>
+      <img src="http://localhost/json/post_image_uploads/<?php echo $post['imgvid_part']; ?>" alt="view posts"><div class="overlay">
+        <div class="wrapper">
+  <a href="apply_for_out.php?id=<?php echo $post['outreach_id'] ?>">
+  <button>
+    JOIN OUTREACH
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</a>
+</div>
+      </div></div>
     <div class="slide-content">
       <div class="slide-date"><?php echo $post['date_time']; ?></div>
       <div class="slide-title"><?php echo $post['title']; ?></div>
       <div class="slide-title"><?php echo $post['about']; ?></div>
       <div class="slide-text"><?php echo $post['body']; ?></div>
-      <button style="background: red; color:white; border:none; height: 5vh; border-radius:5px;">JOIN OUTREACH</button>
+      
     </div>  
   </div>
  

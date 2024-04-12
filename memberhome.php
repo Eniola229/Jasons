@@ -109,8 +109,9 @@
           <div class="left-bottom">
             <div class="weekly-schedule">
               <h1>Next Outreach</h1>
-              <?php foreach ($outreaches as $outreache): ?>
+             
               <div class="calendar">
+                 <?php foreach ($outreaches as $outreache): ?>
                 <div class="day-and-activity activity-one">
                   <div class="day">
                     <h1><?php echo date('m', strtotime($outreache['date_time'])); ?></h1>
@@ -120,8 +121,10 @@
                     <h2><?php echo $outreache['title'] ?></h2>
                   </div>
                  <a tyle="text-decoration: none;" href="read_more_out.php?id=<?php echo $outreache['outreach_id']; ?>"><button s class="btn">View</button></a>
+
                 </div>
-                 <?php endforeach; ?>
+                <?php endforeach; ?>
+                
              
               </div>
             </div>
